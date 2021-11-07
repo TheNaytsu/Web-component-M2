@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="154b25a1-a162-4b0f-80cf-3a7c898c23f5" name="Changes" comment="" />
+    <list default="true" id="154b25a1-a162-4b0f-80cf-3a7c898c23f5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monlecteurvideo/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/monlecteurvideo/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monlecteurvideo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/monlecteurvideo/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Web-Buffa-M2" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="202tDtNE4zDCCzaYVo9FwO2nimp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -53,6 +58,7 @@
       <workItem from="1635254394634" duration="2584000" />
       <workItem from="1635322690388" duration="4033000" />
       <workItem from="1636307795943" duration="38000" />
+      <workItem from="1636308111457" duration="9652000" />
     </task>
     <servers />
   </component>
