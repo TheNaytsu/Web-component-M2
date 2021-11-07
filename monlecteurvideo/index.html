@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Lecteur vidéo</title>
+    <meta charset="UTF-8">
+    <script src="./index.js" type="module"></script>
+</head>
+<body>
+    <my-player id="player" src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"></my-player>
+    <!--<button onclick="play()">PLAY DEPUIS INDEX.HTML</button>-->
+    <script>
+        const p = document.querySelector("#player");
+        function play() {
+            p.play();
+        }
+    </script>
+</body>
+</html>
