@@ -3,6 +3,11 @@ import './lib/webaudio-controls.js';
 const getBaseURL = () =>{
     return new URL('.',import.meta.url);
 };
+
+let ctx = window.AudioContext || window.webkitAudioContext;
+let player, pannerSlider, pannerNode;
+let audioContext;
+
 let style =`
 #all{
 margin-left: 20%;
@@ -33,9 +38,19 @@ float: left;
   margin-left: 10px;
 }
 #playlist{
-margin-right: 25%;
+margin-right: 20%;
 float: right;
 }
+
+ .infoControls {
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 3px;
+    color: #ff5752;
+    font-family: 'Fredoka One';
+}
+
+
 `;
 
 let template = /*html*/`
@@ -51,8 +66,34 @@ let template = /*html*/`
     <button id = "vitesse4x">x4</button>
     <button id = "videoprec">Vidéo précédente</button>
     <webaudio-knob id="volume" min=0 max=1 value=0.5 step="0.01" 
-    tooltip="%s" diameter="40" src="./assets/Aqua.png" sprite="100">Volume</webaudio-knob></div>
+    tooltip="%s" diameter="40" src="./assets/Aqua.png" sprite="100">Volume</webaudio-knob>
+    <br>
 
+        <br>
+        <label>60Hz</label>
+        <input type="range" value="0" step="1" min="-30" max="30" oninput="changeGain(this.value, 0);"></input>
+        <output id="gain0">0 dB</output>
+        <br>
+        <label>170Hz</label>
+        <input type="range" value="0" step="1" min="-30" max="30" oninput="changeGain(this.value, 1);"></input>
+        <output id="gain1">0 dB</output>
+        <br>
+        <label>350Hz</label>
+        <input type="range" value="0" step="1" min="-30" max="30" oninput="changeGain(this.value, 2);"></input>
+        <output id="gain2">0 dB</output>
+        <br>
+        <label>1000Hz</label>
+        <input type="range" value="0" step="1" min="-30" max="30" oninput="changeGain(this.value, 3);"></input>
+        <output id="gain3">0 dB</output>
+        <br>
+        <label>3500Hz</label>
+        <input type="range" value="0" step="1" min="-30" max="30" oninput="changeGain(this.value, 4);"></input>
+        <output id="gain4">0 dB</output>
+        <br>
+        <label>10000Hz</label>
+        <input type="range" value="0" step="1" min="-30" max="30" oninput="changeGain(this.value, 5);"></input>
+        <output id="gain5">0 dB</output>
+    </div>
 
     <div id="playlist">
     <h1 style="text-align: center;" id="titre">Videos</h1>
@@ -86,6 +127,10 @@ class Myvideoplayer extends HTMLElement{
         this.player = this.shadowRoot.querySelector("#player")
         this.player.src = this.getAttribute("src");
         this.definitEcouteurs();
+        audioContext = new ctx();
+        player = this.shadowRoot.querySelector('#player');
+        player.onplay = (e) => {audioContext.resume();}
+        this.buildAudioGraphPanner();
     }
     definitEcouteurs(){
         console.log("ecouteurs définis")
@@ -137,6 +182,7 @@ class Myvideoplayer extends HTMLElement{
             this.player.src = src;
             src = srctemp;
         }
+
     }
     play() {
         this.player.play();
@@ -145,6 +191,25 @@ class Myvideoplayer extends HTMLElement{
     pause() {
         this.player.pause();
         console.log("hello");
+    }
+
+    buildAudioGraphPanner() {
+        // create source and gain node
+        var source = audioContext.createMediaElementSource(player);
+        pannerNode = audioContext.createStereoPanner();
+
+        // connect nodes together
+        source.connect(pannerNode);
+        pannerNode.connect(audioContext.destination);
+    }
+
+    changeGain(sliderVal,nbFilter) {
+        var value = parseFloat(sliderVal);
+        filters[nbFilter].gain.value = value;
+
+        // update output labels
+        var output = document.querySelector("#gain"+nbFilter);
+        output.value = value + " dB";
     }
 }
 customElements.define("my-player",Myvideoplayer)
